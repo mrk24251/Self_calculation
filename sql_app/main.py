@@ -25,7 +25,7 @@ def create_punish(punish: schemas.PunishCreate, db: Session = Depends(get_db)):
 
 
 @app.get("/punishes/", response_model=List[schemas.Punish])
-def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+def read_punish_list(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     punishes = crud.get_punishes(db, skip=skip, limit=limit)
     return punishes
 
@@ -38,7 +38,7 @@ def read_punish(punish_id: int, db: Session = Depends(get_db)):
     return db_punish
 
 @app.post("/punish_by_value/", response_model=List[schemas.Punish])
-def read_user_by_value(punish: schemas.PunishValue, db: Session = Depends(get_db)):
+def read_punish_by_value(punish: schemas.PunishValue, db: Session = Depends(get_db)):
     db_punish = crud.get_punish_by_value(db, value=punish.value)
     return db_punish
 
