@@ -1,8 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-import os
-import psycopg2
 
 # SQLALCHEMY_DATABASE_URL = os.environ['DATABASE_URL']
 
