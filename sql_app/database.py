@@ -8,11 +8,8 @@ import psycopg2
 # SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"postgresql+psycopg2cffi://user:password@host:port/dbname[?key=value&key=value...]
 SQLALCHEMY_DATABASE_URL = os.environ.get('DATABASE_URL')
 
-conn = psycopg2.connect(SQLALCHEMY_DATABASE_URL, sslmode='require')
+engine = psycopg2.connect(SQLALCHEMY_DATABASE_URL, sslmode='require')
 
-engine = create_engine(
-    SQLALCHEMY_DATABASE_URL
-)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
