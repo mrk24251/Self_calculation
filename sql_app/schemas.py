@@ -13,3 +13,13 @@ class Punish(PunishCreate):
 
     class Config:
         orm_mode = True
+
+
+class SpiritCreate(BaseModel):
+    text: str
+
+class Spirit(SpiritCreate):
+    id: int
+
+    class Config:
+        orm_mode = True

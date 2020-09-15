@@ -19,6 +19,13 @@ def get_punish_by_value(db: Session, value: int):
 
     return punish_set
 
+def get_random_spirit(db: Session):
+    length = len(db.query(models.Spirit).all())
+    i = randrange(length)
+    rand_spirit=db.query(models.Punish)[i]
+
+    return rand_spirit
+
 
 def get_punishes(db: Session, skip: int = 0, limit: int = 100):
     return db.query(models.Punish).offset(skip).limit(limit).all()
@@ -30,6 +37,13 @@ def create_punish(db: Session, punish: schemas.PunishCreate):
     db.commit()
     db.refresh(db_punish)
     return db_punish
+
+def create_spirit(db: Session, spirit: schemas.SpiritCreate):
+    db_spirit = models.Spirit(text=spirit.text)
+    db.add(db_spirit)
+    db.commit()
+    db.refresh(db_spirit)
+    return db_spirit
 
 
 # def get_items(db: Session, skip: int = 0, limit: int = 100):

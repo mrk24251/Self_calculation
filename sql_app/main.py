@@ -25,6 +25,11 @@ def create_punish(punish: schemas.PunishCreate, db: Session = Depends(get_db)):
     return crud.create_punish(db=db, punish= punish)
 
 
+@app.post("/spirits/", response_model=schemas.Spirit)
+def create_spirit(spirit: schemas.SpiritCreate, db: Session = Depends(get_db)):
+    return crud.create_spirit(db=db, spirit= spirit)
+
+
 @app.get("/punishes/", response_model=List[schemas.Punish])
 def read_punish_list(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     punishes = crud.get_punishes(db, skip=skip, limit=limit)
@@ -42,6 +47,11 @@ def read_punish(punish_id: int, db: Session = Depends(get_db)):
 def read_punish_by_value(punish: schemas.PunishValue, db: Session = Depends(get_db)):
     db_punish = crud.get_punish_by_value(db, value=punish.value)
     return db_punish
+
+@app.post("/random_spirit/", response_model=schemas.Spirit)
+def read_random_spirit(spirit: schemas.Spirit, db: Session = Depends(get_db)):
+    db_spirit = crud.get_random_spirit(db)
+    return db_spirit
 
 # @app.post("/punishes/{punish_id}/items/", response_model=schemas.Item)
 # def create_item_for_user(
