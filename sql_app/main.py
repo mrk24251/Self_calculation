@@ -48,8 +48,8 @@ def read_punish_by_value(punish: schemas.PunishValue, db: Session = Depends(get_
     db_punish = crud.get_punish_by_value(db, value=punish.value)
     return db_punish
 
-@app.post("/random_spirit/", response_model=schemas.Spirit)
-def read_random_spirit(spirit: schemas.Spirit, db: Session = Depends(get_db)):
+@app.get("/random_spirit/", response_model=schemas.Spirit)
+def read_random_spirit(db: Session = Depends(get_db)):
     db_spirit = crud.get_random_spirit(db)
     return db_spirit
 
