@@ -22,7 +22,7 @@ def get_punish_by_value(db: Session, value: int):
 def get_random_spirit(db: Session):
     length = len(db.query(models.Spirit).all())
     i = randrange(length)
-    rand_spirit=db.query(models.Punish)[i]
+    rand_spirit=db.query(models.Spirit)[i]
 
     return rand_spirit
 
