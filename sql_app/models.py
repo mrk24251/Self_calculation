@@ -25,5 +25,5 @@ class Restriction(Base):
     reason = Column(String)
     endingWith = Column(String)
     myRestriction = Column(String)
-    created_date = Column(Date, default=datetime.date.utcnow)
+    created_date = Column(Date, default=datetime.date.today())
 
