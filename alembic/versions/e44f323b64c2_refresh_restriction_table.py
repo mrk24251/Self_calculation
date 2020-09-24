@@ -17,7 +17,6 @@ depends_on = None
 
 
 def upgrade():
-    op.drop_table("restriction")
     op.create_table(
         "restriction",
         sa.Column("id", sa.Integer, primary_key=True),
