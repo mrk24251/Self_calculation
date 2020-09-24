@@ -24,12 +24,6 @@ def get_db():
 def create_punish(punish: schemas.PunishCreate, db: Session = Depends(get_db)):
     return crud.create_punish(db=db, punish= punish)
 
-
-@app.post("/spirits/", response_model=schemas.Spirit)
-def create_spirit(spirit: schemas.SpiritCreate, db: Session = Depends(get_db)):
-    return crud.create_spirit(db=db, spirit= spirit)
-
-
 @app.get("/punishes/", response_model=List[schemas.Punish])
 def read_punish_list(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     punishes = crud.get_punishes(db, skip=skip, limit=limit)
@@ -48,10 +42,23 @@ def read_punish_by_value(punish: schemas.PunishValue, db: Session = Depends(get_
     db_punish = crud.get_punish_by_value(db, value=punish.value)
     return db_punish
 
+@app.post("/spirits/", response_model=schemas.Spirit)
+def create_spirit(spirit: schemas.SpiritCreate, db: Session = Depends(get_db)):
+    return crud.create_spirit(db=db, spirit= spirit)
+
 @app.get("/random_spirit/", response_model=schemas.Spirit)
 def read_random_spirit(db: Session = Depends(get_db)):
     db_spirit = crud.get_random_spirit(db)
     return db_spirit
+
+@app.get("/restrictions/", response_model=List[schemas.Restriction])
+def read_restriction_list(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    punishes = crud.get_restriction(db, skip=skip, limit=limit)
+    return punishes
+
+@app.post("/restrictions/", response_model=schemas.Restriction)
+def create_restriction(restriction: schemas.RestrictionCreate, db: Session = Depends(get_db)):
+    return crud.create_restriction(db=db, restriction= restriction)
 
 # @app.post("/punishes/{punish_id}/items/", response_model=schemas.Item)
 # def create_item_for_user(

@@ -45,6 +45,16 @@ def create_spirit(db: Session, spirit: schemas.SpiritCreate):
     db.refresh(db_spirit)
     return db_spirit
 
+def get_restriction(db: Session, skip: int = 0, limit: int = 100):
+    return db.query(models.Restriction).offset(skip).limit(limit).all()
+
+def create_restriction(db: Session, restriction: schemas.RestrictionCreate):
+    db_restriction = models.Restriction(reason= restriction.reason,endingWith = restriction.endingWith
+                                        ,myRestriction= restriction.myRestriction)
+    db.add(db_restriction)
+    db.commit()
+    db.refresh(db_restriction)
+    return db_restriction
 
 # def get_items(db: Session, skip: int = 0, limit: int = 100):
 #     return db.query(models.Item).offset(skip).limit(limit).all()
