@@ -21,9 +21,9 @@ def upgrade():
     op.create_table(
         "restriction",
         sa.Column("id", sa.Integer, primary_key=True),
-        sa.Column("reason",sa.String(100)),
-        sa.Column("endingWith", sa.String(100)),
-        sa.Column("myRestriction", sa.String(100)),
+        sa.Column("reason",sa.String(300)),
+        sa.Column("endingWith", sa.String(500)),
+        sa.Column("myRestriction", sa.String(300)),
         sa.Column("created_date", sa.Date),
     )
 

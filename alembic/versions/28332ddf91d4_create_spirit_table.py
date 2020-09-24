@@ -20,7 +20,7 @@ def upgrade():
     op.create_table(
         "spirit",
         sa.Column("id", sa.Integer, primary_key=True),
-        sa.Column("text",sa.String(300)),
+        sa.Column("text",sa.String(500)),
     )
 
 def downgrade():
